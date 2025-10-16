@@ -3,16 +3,18 @@ package main
 import (
 	"errors"
 	"fmt"
+
+	"github.com/vitlobo/pokedexcli/internal/appcfg"
 )
 
-func commandMapf(cfg *config, args ...string) error {
-	locationsResp, err := cfg.pokeapiClient.ListLocations(cfg.nextLocationsURL)
+func commandMapf(cfg *appcfg.Config, args ...string) error {
+	locationsResp, err := cfg.PokeapiClient.ListLocations(cfg.NextLocationsURL)
 	if err != nil {
 		return err
 	}
 
-	cfg.nextLocationsURL = locationsResp.Next
-	cfg.prevLocationsURL = locationsResp.Previous
+	cfg.NextLocationsURL = locationsResp.Next
+	cfg.PrevLocationsURL = locationsResp.Previous
 
 	for _, loc := range locationsResp.Results {
 		fmt.Println(loc.Name)
@@ -20,18 +22,18 @@ func commandMapf(cfg *config, args ...string) error {
 	return nil
 }
 
-func commandMapb(cfg *config, args ...string) error {
-	if cfg.prevLocationsURL == nil {
+func commandMapb(cfg *appcfg.Config, args ...string) error {
+	if cfg.PrevLocationsURL == nil {
 		return errors.New("you're on the first page")
 	}
 
-	locationsResp, err := cfg.pokeapiClient.ListLocations(cfg.prevLocationsURL)
+	locationsResp, err := cfg.PokeapiClient.ListLocations(cfg.PrevLocationsURL)
 	if err != nil {
 		return err
 	}
 
-	cfg.nextLocationsURL = locationsResp.Next
-	cfg.prevLocationsURL = locationsResp.Previous
+	cfg.NextLocationsURL = locationsResp.Next
+	cfg.PrevLocationsURL = locationsResp.Previous
 
 	for _, loc := range locationsResp.Results {
 		fmt.Println(loc.Name)

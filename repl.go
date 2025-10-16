@@ -6,23 +6,16 @@ import (
 	"os"
 	"strings"
 
-	"github.com/vitlobo/pokedexcli/internal/pokeapi"
+	"github.com/vitlobo/pokedexcli/internal/appcfg"
 )
 
 type cliCommand struct {
 	name        string
 	description string
-	callback    func(*config,  ...string) error
+	callback    func(*appcfg.Config,  ...string) error
 }
 
-type config struct {
-	pokeapiClient    pokeapi.Client
-	nextLocationsURL *string
-	prevLocationsURL *string
-	caughtPokemon    map[string]pokeapi.Pokemon
-}
-
-func startRepl(cfg *config) {
+func startRepl(cfg *appcfg.Config) {
 	reader :=bufio.NewScanner(os.Stdin)
 	for {
 		fmt.Print("Pokedex > ")
@@ -81,15 +74,30 @@ func getCommands() map[string]cliCommand {
 			description: "Displays a help message",
 			callback:    commandHelp,
 		},
+		"inspect": {
+			name:        "inspect <pokemon_name>",
+			description: "View details about a caught Pokemon",
+			callback:    commandInspect,
+		},
 		"map": {
-			name: "map",
+			name:        "map",
 			description: "Get the next page of locations",
-			callback: commandMapf,
+			callback:    commandMapf,
 		},
 		"mapb": {
-			name: "mapb",
+			name:        "mapb",
 			description: "Get the previous page of locations",
-			callback: commandMapb,
+			callback:    commandMapb,
+		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "See all the Pokemon you've caught",
+			callback:    commandPokedex,
+		},
+		"save": {
+			name:        "save",
+			description: "Save pokedex progress",
+			callback:    commandWrite,
 		},
 	}
 }
