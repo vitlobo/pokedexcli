@@ -14,13 +14,11 @@ func commandPokedex(cfg *appcfg.Config, args ...string) error {
         return nil
     }
 
-    // collect map values
     list := make([]pokeapi.Pokemon, 0, len(cfg.CaughtPokemon))
     for _, p := range cfg.CaughtPokemon {
         list = append(list, p)
     }
 
-    // sort by numeric ID
     sort.Slice(list, func(i, j int) bool {
         return list[i].ID < list[j].ID
     })

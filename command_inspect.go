@@ -39,7 +39,7 @@ func commandInspect(cfg *appcfg.Config, args ...string) error {
 }
 
 func getFullPokemon(cfg *appcfg.Config, p pokeapi.Pokemon) (pokeapi.Pokemon, error) {
-	if p.Height != 0 { return p, nil}
+	if p.Height != 0 { return p, nil }
 	
 	var full pokeapi.Pokemon
 	var err error

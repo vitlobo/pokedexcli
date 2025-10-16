@@ -9,9 +9,7 @@ import (
 
 func commandMapf(cfg *appcfg.Config, args ...string) error {
 	locationsResp, err := cfg.PokeapiClient.ListLocations(cfg.NextLocationsURL)
-	if err != nil {
-		return err
-	}
+	if err != nil { return err }
 
 	cfg.NextLocationsURL = locationsResp.Next
 	cfg.PrevLocationsURL = locationsResp.Previous
@@ -28,9 +26,7 @@ func commandMapb(cfg *appcfg.Config, args ...string) error {
 	}
 
 	locationsResp, err := cfg.PokeapiClient.ListLocations(cfg.PrevLocationsURL)
-	if err != nil {
-		return err
-	}
+	if err != nil { return err }
 
 	cfg.NextLocationsURL = locationsResp.Next
 	cfg.PrevLocationsURL = locationsResp.Previous

@@ -7,8 +7,8 @@ import (
 	"github.com/vitlobo/pokedexcli/internal/pokesave"
 )
 
-func commandWrite(cfg *appcfg.Config, args ...string) error {
-	 path, err := pokesave.DefaultPath()
+func commandSave(cfg *appcfg.Config, args ...string) error {
+	path, err := pokesave.DefaultPath()
     if err != nil { return err }
 
     snap := appcfg.SnapshotFromConfig(cfg)

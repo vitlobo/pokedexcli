@@ -97,7 +97,7 @@ func getCommands() map[string]cliCommand {
 		"save": {
 			name:        "save",
 			description: "Save pokedex progress",
-			callback:    commandWrite,
+			callback:    commandSave,
 		},
 	}
 }

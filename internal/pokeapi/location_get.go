@@ -2,46 +2,49 @@ package pokeapi
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"net/http"
 )
 
 //GetLocation
 func (c *Client) GetLocation(locationName string) (Location, error) {
-	url := baseURL + "/location-area/" + locationName
+    url := baseURL + "/location-area/" + locationName
 
-	if val, ok := c.cache.Get(url); ok {
-		locationResp := Location{}
-		err := json.Unmarshal(val, &locationResp)
-		if err != nil {
-			return Location{}, err
-		}
-		return locationResp, nil
-	}
+    if val, ok := c.cache.Get(url); ok {
+        var loc Location
+        if err := json.Unmarshal(val, &loc); err != nil {
+            return Location{}, fmt.Errorf("cache unmarshal: %w", err)
+        }
+        return loc, nil
+    }
 
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return Location{}, err
-	}
+    req, err := http.NewRequest(http.MethodGet, url, nil)
+    if err != nil {
+        return Location{}, fmt.Errorf("new request: %w", err)
+    }
 
-	resp, err := c.httpClient.Do(req)
-	if err != nil {
-		return Location{}, err
-	}
-	defer resp.Body.Close()
+    resp, err := c.httpClient.Do(req)
+    if err != nil {
+        return Location{}, fmt.Errorf("do request: %w", err)
+    }
+    defer resp.Body.Close()
 
-	dat, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return Location{}, err
-	}
+    if resp.StatusCode != http.StatusOK {
+        io.Copy(io.Discard, resp.Body)
+        return Location{}, fmt.Errorf("location %s: status %d", locationName, resp.StatusCode)
+    }
 
-	locationResp := Location{}
-	err = json.Unmarshal(dat, &locationResp)
-	if err != nil {
-		return Location{}, err
-	}
+    dat, err := io.ReadAll(resp.Body)
+    if err != nil {
+        return Location{}, fmt.Errorf("read body: %w", err)
+    }
 
-	c.cache.Add(url, dat)
+    var loc Location
+    if err := json.Unmarshal(dat, &loc); err != nil {
+        return Location{}, fmt.Errorf("unmarshal: %w", err)
+    }
 
-	return locationResp, nil
+    c.cache.Add(url, dat)
+    return loc, nil
 }
