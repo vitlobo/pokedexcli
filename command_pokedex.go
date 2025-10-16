@@ -5,6 +5,7 @@ import (
 	"sort"
 
 	"github.com/vitlobo/pokedexcli/internal/appcfg"
+	"github.com/vitlobo/pokedexcli/internal/pokeapi"
 )
 
 func commandPokedex(cfg *appcfg.Config, args ...string) error {
@@ -12,10 +13,21 @@ func commandPokedex(cfg *appcfg.Config, args ...string) error {
         fmt.Println("Your Pokedex is empty.")
         return nil
     }
+
+    // collect map values
+    list := make([]pokeapi.Pokemon, 0, len(cfg.CaughtPokemon))
+    for _, p := range cfg.CaughtPokemon {
+        list = append(list, p)
+    }
+
+    // sort by numeric ID
+    sort.Slice(list, func(i, j int) bool {
+        return list[i].ID < list[j].ID
+    })
+
     fmt.Println("Your Pokedex:")
-    names := make([]string, 0, len(cfg.CaughtPokemon))
-    for _, p := range cfg.CaughtPokemon { names = append(names, p.Name) }
-    sort.Strings(names)
-    for _, n := range names { fmt.Printf(" - %s\n", n) }
+    for _, p := range list {
+        fmt.Printf(" - %s (id: %d)\n", p.Name, p.ID)
+    }
     return nil
 }
