@@ -4,8 +4,17 @@ import (
 	"log"
 	"time"
 
-	"github.com/vitlobo/pokedexcli/cmd"
+	_ "github.com/vitlobo/pokedexcli/cmd/catch"
+	_ "github.com/vitlobo/pokedexcli/cmd/exit"
+	_ "github.com/vitlobo/pokedexcli/cmd/explore"
+	_ "github.com/vitlobo/pokedexcli/cmd/help"
+	_ "github.com/vitlobo/pokedexcli/cmd/inspect"
+	_ "github.com/vitlobo/pokedexcli/cmd/mapcmd"
+	_ "github.com/vitlobo/pokedexcli/cmd/pokedex"
+	_ "github.com/vitlobo/pokedexcli/cmd/save"
+
 	"github.com/vitlobo/pokedexcli/internal/appcfg"
+	"github.com/vitlobo/pokedexcli/internal/core"
 	"github.com/vitlobo/pokedexcli/internal/pokeapi"
 	"github.com/vitlobo/pokedexcli/internal/pokesave"
 	"github.com/vitlobo/pokedexcli/internal/repl"
@@ -26,6 +35,6 @@ func main() {
 
 	appcfg.ApplySnapshot(cfg, snap)
 
-	commands := cmd.GetCommands()
+	commands := core.GetCommands()
 	repl.StartRepl(cfg,commands)
 }

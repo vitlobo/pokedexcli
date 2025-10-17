@@ -1,4 +1,4 @@
-package cmd
+package inspect
 
 import (
 	"errors"
@@ -6,8 +6,17 @@ import (
 	"strings"
 
 	"github.com/vitlobo/pokedexcli/internal/appcfg"
+	"github.com/vitlobo/pokedexcli/internal/core"
 	"github.com/vitlobo/pokedexcli/internal/pokeapi"
 )
+
+func init() {
+	core.RegisterCommand("inspect", core.Command{
+		Name:        "inspect <pokemon_name>    ",
+        Description: "View details about a caught Pokémon",
+        Callback:    CommandInspect,
+	})
+}
 
 func CommandInspect(cfg *appcfg.Config, args ...string) error {
 	if len(args) != 1 {
@@ -28,7 +37,7 @@ func CommandInspect(cfg *appcfg.Config, args ...string) error {
 	fmt.Println("Weight:", full.Weight)
 	fmt.Println("Stats:")
 	for _, stat := range full.Stats {
-		fmt.Printf("  -%s: %v\n", stat.Stat.Name, stat.BaseStat)
+		fmt.Printf("  - %s: %v\n", stat.Stat.Name, stat.BaseStat)
 	}
 	fmt.Println("Types:")
 	for _, typeInfo := range full.Types {

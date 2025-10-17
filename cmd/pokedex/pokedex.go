@@ -1,12 +1,21 @@
-package cmd
+package pokedex
 
 import (
 	"fmt"
 	"sort"
 
 	"github.com/vitlobo/pokedexcli/internal/appcfg"
+	"github.com/vitlobo/pokedexcli/internal/core"
 	"github.com/vitlobo/pokedexcli/internal/pokeapi"
 )
+
+func init() {
+	core.RegisterCommand("pokedex", core.Command{
+		Name:        "pokedex                   ",
+        Description: "See all the Pokémon you've caught",
+        Callback:    CommandPokedex,
+	})
+}
 
 func CommandPokedex(cfg *appcfg.Config, args ...string) error {
 	if len(cfg.CaughtPokemon) == 0 {
