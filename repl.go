@@ -55,47 +55,47 @@ func cleanInput(text string) []string {
 func getCommands() map[string]cliCommand {
 	return map[string]cliCommand{
 		"catch": {
-			name:        "catch <pokemon_name>",
+			name:        "catch <pokemon_name>      ",
 			description: "Attempt to catch a pokemon",
 			callback:    commandCatch,
 		},
 		"exit": {
-			name:        "exit",
+			name:        "exit                      ",
 			description: "Exit the Pokedex",
 			callback:    commandExit,
 		},
 		"explore": {
-			name:        "explore <location_name>",
+			name:        "explore <location_name>   ",
 			description: "Explore a location",
 			callback:    commandExplore,
 		},
 		"help": {
-			name:        "help",
+			name:        "help                      ",
 			description: "Displays a help message",
 			callback:    commandHelp,
 		},
 		"inspect": {
-			name:        "inspect <pokemon_name>",
+			name:        "inspect <pokemon_name>    ",
 			description: "View details about a caught Pokemon",
 			callback:    commandInspect,
 		},
 		"map": {
-			name:        "map",
+			name:        "map                       ",
 			description: "Get the next page of locations",
 			callback:    commandMapf,
 		},
 		"mapb": {
-			name:        "mapb",
+			name:        "mapb                      ",
 			description: "Get the previous page of locations",
 			callback:    commandMapb,
 		},
 		"pokedex": {
-			name:        "pokedex",
+			name:        "pokedex                   ",
 			description: "See all the Pokemon you've caught",
 			callback:    commandPokedex,
 		},
 		"save": {
-			name:        "save",
+			name:        "save                      ",
 			description: "Save pokedex progress",
 			callback:    commandSave,
 		},
