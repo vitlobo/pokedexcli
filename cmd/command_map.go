@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"errors"
@@ -7,7 +7,7 @@ import (
 	"github.com/vitlobo/pokedexcli/internal/appcfg"
 )
 
-func commandMapf(cfg *appcfg.Config, args ...string) error {
+func CommandMapf(cfg *appcfg.Config, args ...string) error {
 	locationsResp, err := cfg.PokeapiClient.ListLocations(cfg.NextLocationsURL)
 	if err != nil { return err }
 
@@ -20,7 +20,7 @@ func commandMapf(cfg *appcfg.Config, args ...string) error {
 	return nil
 }
 
-func commandMapb(cfg *appcfg.Config, args ...string) error {
+func CommandMapb(cfg *appcfg.Config, args ...string) error {
 	if cfg.PrevLocationsURL == nil {
 		return errors.New("you're on the first page")
 	}

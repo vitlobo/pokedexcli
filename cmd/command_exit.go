@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"github.com/vitlobo/pokedexcli/internal/appcfg"
 )
 
-func commandExit(cfg *appcfg.Config, args ...string) error {
+func CommandExit(cfg *appcfg.Config, args ...string) error {
 	fmt.Println("Closing the Pokedex... Goodbye!")
 	os.Exit(0)
 	return nil

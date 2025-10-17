@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"github.com/vitlobo/pokedexcli/internal/pokeapi"
 )
 
-func commandPokedex(cfg *appcfg.Config, args ...string) error {
+func CommandPokedex(cfg *appcfg.Config, args ...string) error {
 	if len(cfg.CaughtPokemon) == 0 {
         fmt.Println("Your Pokedex is empty.")
         return nil

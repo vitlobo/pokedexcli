@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"errors"
@@ -9,7 +9,7 @@ import (
 	"github.com/vitlobo/pokedexcli/internal/pokeapi"
 )
 
-func commandInspect(cfg *appcfg.Config, args ...string) error {
+func CommandInspect(cfg *appcfg.Config, args ...string) error {
 	if len(args) != 1 {
 		return errors.New("you must provide a pokemon name that you have caught")
 	}

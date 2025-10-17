@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"github.com/vitlobo/pokedexcli/internal/pokesave"
 )
 
-func commandSave(cfg *appcfg.Config, args ...string) error {
+func CommandSave(cfg *appcfg.Config, args ...string) error {
 	path, err := pokesave.DefaultPath()
     if err != nil { return err }
 

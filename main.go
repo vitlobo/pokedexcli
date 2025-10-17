@@ -4,9 +4,11 @@ import (
 	"log"
 	"time"
 
+	"github.com/vitlobo/pokedexcli/cmd"
 	"github.com/vitlobo/pokedexcli/internal/appcfg"
 	"github.com/vitlobo/pokedexcli/internal/pokeapi"
 	"github.com/vitlobo/pokedexcli/internal/pokesave"
+	"github.com/vitlobo/pokedexcli/internal/repl"
 )
 
 func main() {
@@ -24,5 +26,6 @@ func main() {
 
 	appcfg.ApplySnapshot(cfg, snap)
 
-	startRepl(cfg)
+	commands := cmd.GetCommands()
+	repl.StartRepl(cfg,commands)
 }

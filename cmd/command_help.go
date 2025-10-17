@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"fmt"
@@ -7,8 +7,8 @@ import (
 	"github.com/vitlobo/pokedexcli/internal/appcfg"
 )
 
-func commandHelp(cfg *appcfg.Config, args ...string) error {
-	cmds := getCommands()
+func CommandHelp(cfg *appcfg.Config, args ...string) error {
+	cmds := GetCommands()
 	keys := make([]string, 0, len(cmds))
 	for k := range cmds { keys = append(keys, k) }
 	sort.Strings(keys)
@@ -19,8 +19,8 @@ func commandHelp(cfg *appcfg.Config, args ...string) error {
 	fmt.Println()
 	for _, k := range keys {
 		c := cmds[k]
-		fmt.Printf(" - %-16s %s\n", c.name, c.description)
-		//fmt.Printf("%s: %s\n", cmd.name, cmd.description)
+		fmt.Printf(" - %-16s %s\n", c.Name, c.Description)
+		//fmt.Printf("%s: %s\n", c.Name, c.Description)
 	}
 	fmt.Println()
 	return nil

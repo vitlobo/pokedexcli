@@ -1,4 +1,4 @@
-package main
+package cmd
 
 import (
 	"errors"
@@ -7,7 +7,7 @@ import (
 	"github.com/vitlobo/pokedexcli/internal/appcfg"
 )
 
-func commandExplore(cfg *appcfg.Config, args ...string) error {
+func CommandExplore(cfg *appcfg.Config, args ...string) error {
 	if len(args) != 1 {
 		return errors.New("you must provide a location name")
 	}
