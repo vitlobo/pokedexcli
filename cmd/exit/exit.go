@@ -17,7 +17,7 @@ func init() {
 }
 
 func CommandExit(cfg *appcfg.Config, args ...string) error {
-	fmt.Println("Closing the Pokedex... Goodbye!")
+	fmt.Println("Closing the Pokédex... Goodbye!")
 	os.Exit(0)
 	return nil
 }

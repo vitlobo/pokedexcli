@@ -31,7 +31,7 @@ func (c *Client) GetPokemon(pokemonName string) (Pokemon, error) {
 
     if resp.StatusCode != http.StatusOK {
       io.Copy(io.Discard, resp.Body)
-      return Pokemon{}, fmt.Errorf("pokemon %s: status %d", pokemonName, resp.StatusCode)
+      return Pokemon{}, fmt.Errorf("pokémon %s: status %d", pokemonName, resp.StatusCode)
     }
 
     dat, err := io.ReadAll(resp.Body)

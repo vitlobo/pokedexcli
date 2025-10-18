@@ -1,4 +1,4 @@
-package registry
+package cmd
 
 import (
 	_ "github.com/vitlobo/pokedexcli/cmd/catch"
@@ -13,6 +13,7 @@ import (
 	"github.com/vitlobo/pokedexcli/internal/core"
 )
 
-func GetCommands() map[string]core.Command {
+// Returns all registered commands
+func GetRegisteredCommands() map[string]core.Command {
 	return core.GetCommands()
 }

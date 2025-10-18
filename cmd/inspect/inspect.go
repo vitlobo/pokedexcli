@@ -8,11 +8,12 @@ import (
 	"github.com/vitlobo/pokedexcli/internal/appcfg"
 	"github.com/vitlobo/pokedexcli/internal/core"
 	"github.com/vitlobo/pokedexcli/internal/pokeapi"
+	"github.com/vitlobo/pokedexcli/internal/util"
 )
 
 func init() {
 	core.RegisterCommand("inspect", core.Command{
-		Name:        "inspect <pokemon_name>    ",
+		Name:        "inspect <pokémon_name>    ",
         Description: "View details about a caught Pokémon",
         Callback:    CommandInspect,
 	})
@@ -20,19 +21,19 @@ func init() {
 
 func CommandInspect(cfg *appcfg.Config, args ...string) error {
 	if len(args) != 1 {
-		return errors.New("you must provide a pokemon name that you have caught")
+		return errors.New("you must provide a Pokémon name that you have caught")
 	}
 
 	name := args [0]
 	p, ok := cfg.CaughtPokemon[name]
 	if !ok {
-		return errors.New("you have not caught that pokemon")
+		return errors.New("you have not caught that Pokémon")
 	}
 
 	full, err := getFullPokemon(cfg, p)
 	if err != nil { return err }
 
-	fmt.Println("Name:", full.Name)
+	fmt.Println("Name:", util.TitleCase(full.Name))
 	fmt.Println("Height:", full.Height)
 	fmt.Println("Weight:", full.Weight)
 	fmt.Println("Stats:")

@@ -24,7 +24,7 @@ func CommandHelp(cfg *appcfg.Config, args ...string) error {
 	sort.Strings(keys)
 
 	fmt.Println()
-	fmt.Println("Welcome to the Pokedex!")
+	fmt.Println("Welcome to the Pokédex!")
 	fmt.Println("Usage:")
 	fmt.Println()
 	for _, k := range keys {

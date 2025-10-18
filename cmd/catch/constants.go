@@ -1,7 +1,5 @@
 package catch
 
-import "time"
-
 //
 // ====== Constants ======
 //
@@ -12,8 +10,6 @@ const (
 	LuckBoostOnFail      float64 = 1.02
 	MinLuck 		     float64 = 0.75
 	MaxLuck              float64 = 1.25
-	BallShakeCount           int = 3
-	BallShakeDelay               = 600 * time.Millisecond
 )
 
 //Pokeball constants

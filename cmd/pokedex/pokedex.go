@@ -19,7 +19,7 @@ func init() {
 
 func CommandPokedex(cfg *appcfg.Config, args ...string) error {
 	if len(cfg.CaughtPokemon) == 0 {
-        fmt.Println("Your Pokedex is empty.")
+        fmt.Println("Your Pokédex is empty.")
         return nil
     }
 
@@ -32,7 +32,7 @@ func CommandPokedex(cfg *appcfg.Config, args ...string) error {
         return list[i].ID < list[j].ID
     })
 
-    fmt.Println("Your Pokedex:")
+    fmt.Println("Your Pokédex:")
     for _, p := range list {
         fmt.Printf(" - %s (id: %d)\n", p.Name, p.ID)
     }

@@ -13,7 +13,7 @@ import (
 func StartRepl(cfg *appcfg.Config, commands map[string]core.Command) {
 	reader :=bufio.NewScanner(os.Stdin)
 	for {
-		fmt.Print("Pokedex > ")
+		fmt.Print("Pokédex > ")
 		reader.Scan()
 
 		words := cleanInput(reader.Text())
