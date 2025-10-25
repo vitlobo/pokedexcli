@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 )
 
+const SaveVersion = 1
+
 type PokeEntry struct {
 	ID   int    `json:"id"`
 	Name string `json:"name"`
@@ -18,7 +20,7 @@ type SaveV1 struct {
 
 func DefaultPath() (string, error) {
 	home, err := os.UserHomeDir()
-	if err != nil {return "", fmt.Errorf("home dir: %w", err) }
+	if err != nil { return "", fmt.Errorf("home dir: %w", err) }
 	return filepath.Join(home, "Documents", "pokedexcli", "pokesave.json"), nil
 }
 

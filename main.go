@@ -13,7 +13,7 @@ import (
 
 func main() {
 	path, err := pokesave.DefaultPath()
-	if err != nil { log.Fatal(err)}
+	if err != nil { log.Fatal(err) }
 
 	snap, err := pokesave.Load(path)
 	if err != nil { log.Printf("load save: %v", err)}

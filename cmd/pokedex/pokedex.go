@@ -7,6 +7,7 @@ import (
 	"github.com/vitlobo/pokedexcli/internal/appcfg"
 	"github.com/vitlobo/pokedexcli/internal/core"
 	"github.com/vitlobo/pokedexcli/internal/pokeapi"
+	"github.com/vitlobo/pokedexcli/internal/util"
 )
 
 func init() {
@@ -34,7 +35,7 @@ func CommandPokedex(cfg *appcfg.Config, args ...string) error {
 
     fmt.Println("Your Pokédex:")
     for _, p := range list {
-        fmt.Printf(" - %s (id: %d)\n", p.Name, p.ID)
+        fmt.Printf(" - %s (id: %d)\n", util.TitleCase(p.Name), p.ID)
     }
     return nil
 }

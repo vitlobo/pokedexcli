@@ -7,8 +7,6 @@ import (
 	"os"
 )
 
-const SaveVersion = 1
-
 func Load(path string) (SaveV1, error) {
 	var out SaveV1
 	if err := ensureDirFor(path); err != nil {
